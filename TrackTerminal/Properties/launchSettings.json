@@ -2,7 +2,7 @@
   "profiles": {
     "TrackTerminal": {
       "commandName": "Project",
-      "commandLineArgs": "help"
+      "commandLineArgs": "--help"
     }
   }
 }
