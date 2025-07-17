@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\LogReader\LogParser.csproj" />
     <ProjectReference Include="..\ToteTracker\ToteTracker.csproj" />
   </ItemGroup>
 

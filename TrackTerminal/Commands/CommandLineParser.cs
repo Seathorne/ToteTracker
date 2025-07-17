@@ -55,7 +55,7 @@ internal static class CommandLineParser
                 values.Add(args[++index]);
             }
 
-            return values.Count >= 1 ? values : ["true"];
+            return values.Count >= 1 ? values : [];
         }
     }
 }
