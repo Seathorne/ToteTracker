@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TrackTerminal": {
+      "commandName": "Project",
+      "commandLineArgs": "help"
+    }
+  }
+}
