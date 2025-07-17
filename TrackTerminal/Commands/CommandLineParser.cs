@@ -34,7 +34,11 @@ internal static class CommandLineParser
             {
                 arguments.Add(args[i]);
             }
-            else commandName = args[0];
+            else
+            {
+                commandName = args[i];
+                isNamed = true;
+            }
         }
 
         return new ParsedCommand(
