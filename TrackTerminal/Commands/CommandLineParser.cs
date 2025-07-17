@@ -18,12 +18,13 @@ internal static class CommandLineParser
         bool isNamed = false;
         for (int i = 0; i < args.Length; i++)
         {
-            if (args[i].StartsWith("--")) // -- is a flag option
+            if (args[i].StartsWith("--"))   // e.g., --verbose; --tote U0847
             {
                 string key = args[i][2..];
-                options[key] = ["true"];
+                List<string> values = GetOptionValues(ref i);
+                options[key] = values;
             }
-            else if (args[i].StartsWith('-')) // - is an option (parameter) that may be followed by at least 1 value
+            else if (args[i].StartsWith('-'))   // e.g., -v; -t U0847
             {
                 string key = args[i][1..];
                 List<string> values = GetOptionValues(ref i);
@@ -31,9 +32,9 @@ internal static class CommandLineParser
             }
             else if (isNamed)
             {
-                arguments.Add(args[i]); // non-prefixed values not following any option are arguments to the command
+                arguments.Add(args[i]);
             }
-            else commandName = args[0]; // first argument is the command name itself
+            else commandName = args[0];
         }
 
         return new ParsedCommand(
