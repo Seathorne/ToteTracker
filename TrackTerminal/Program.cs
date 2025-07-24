@@ -9,12 +9,12 @@ namespace BoxSearch;
 internal class Program
 {
     private static BoxRepository? _boxRepository;
-    //private readonly static LogReader _logReader;
+    private readonly static LogReader _logReader;
 
     static Program()
     {
-        //_logReader = new() { TimeZone = TimeZoneInfo.Local };
-        //_logReader.WriteBack += Console.WriteLine;
+        _logReader = new() { TimeZone = TimeZoneInfo.Local };
+        _logReader.WriteBack += Console.WriteLine;
     }
 
     public static async Task<int> Main(string[] args)
@@ -24,10 +24,10 @@ internal class Program
         registry.Register(CreateConnectToDatabaseCommand());
         registry.Register(CreateSelectTableCommand());
 
-        registry.Register(CommandDefinition.Create("exit", "Exit the application", async _ =>
+        registry.Register(CommandDefinition.Create("exit", "Exit the application", _ =>
         {
             Environment.Exit(0);
-            return 0;
+            return new Task<int>(() => 0);
         }));
 
         CommandExecutor executor = new(registry);
@@ -151,9 +151,9 @@ internal class Program
             // TODO implement commands
             await Task.Run(() =>
             {
-                //_logReader.CloseFile();
-                //_logReader.OpenFile(fileName);
-                //_logReader.ProcessFile();
+                _logReader.CloseFile();
+                _logReader.OpenFile(fileName);
+                _logReader.ProcessFile();
             });
 
             return 0;
